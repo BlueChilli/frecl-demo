@@ -1,7 +1,7 @@
 import {Map} from "immutable";
 export const RESET_NOTIFICATION_STATE = "RESET_NOTIFICATION_STATE";
 
-export const createNotification = (status:string, forActionType:string, actionPayload, timeout:number = 5000) => {
+export const createNotification = (status, forActionType, actionPayload, timeout = 5000) => {
   return {
     type: 'NOTIFICATION_STATE',
     payload: {

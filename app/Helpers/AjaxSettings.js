@@ -1,17 +1,14 @@
 import axios from "axios";
 import {fromJS, Map} from "immutable";
-import {canUseDOM} from "../../Frecl/Helpers/canUseDOM";
-import {apiResponseDataMap} from "../../Frecl/types";
+import {canUseDOM} from "../../Frecl/Helpers/canUseDOM"
 
-declare var API_KEY:string
-
-const instance = axios.create<JSON>({
+const instance = axios.create({
   withCredentials: true,
   headers: {
     apiKey: API_KEY
   },
   transformResponse: (data) => {
-    const parsedData:apiResponseDataMap = JSON.parse(data);
+    const parsedData = JSON.parse(data);
     return fromJS(parsedData);
   }
 });
@@ -26,10 +23,9 @@ instance.interceptors.request.use(config => {
 instance.interceptors.response.use(function (response) {
   // Do something with response data
   return response;
-}, function ({response}) {
+}, function ({response = Map()}) {
   // Do something with response error
   response.data = response.data.set('status', response.status);
-
   return Promise.reject(response);
 });
 
