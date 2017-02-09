@@ -9,9 +9,8 @@ const Register = ({onRegisterSuccess}) => (
   <Row>
     <Col cols="desktop-4 tablet-6" offset="desktop-4 tablet-3">
       <h1>Register</h1>
-        <FormGenerator stateName="ACCOUNT" apiType="UserAccount" onSubmitSuccess={onRegisterSuccess}>
-          <InputMapper name="firstName"/>
-          <InputMapper name="lastName"/> 
+        <FormGenerator debug stateName="SESSION" apiType="User" apiVerb="Register" onSubmitSuccess={onRegisterSuccess}>
+          <InputMapper name="companyName" component={<Input/>}/> 
           <InputMapper name="email" component={<Input/>}/>
           <InputMapper name="password" component={<Input type='password'/>}/>
         </FormGenerator>
@@ -19,11 +18,9 @@ const Register = ({onRegisterSuccess}) => (
   </Row>
 );
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onRegisterSuccess: (apiResponse, formData) => {
-    createDispatchGetAction(dispatch, loginApi, formData)("SESSION").then(() => {
-      dispatch(push('/app'));
-    })
+const mapDispatchToProps = (dispatch) => ({
+  onRegisterSuccess: () => {
+    dispatch(push('/app'));
   }
 });
 

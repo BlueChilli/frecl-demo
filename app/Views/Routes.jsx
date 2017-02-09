@@ -52,9 +52,7 @@ export default React.createClass({
   render() {
     return (
       <Router history={this.props.history} onUpdate={this.handleRouterUpdate}>
-        <Route path="/">
-          {getRoutes()}
-        </Route>
+        {getRoutes()}
       </Router>
     );
   }
