@@ -2,9 +2,9 @@ import React from "react"
 import Select from "react-select"
 import {List, fromJS} from "immutable";
 import "react-select/dist/react-select.css"
-import InputWrapper from "../../../Frecl/Components/Form/InputWrapper.tsx";
+import InputWrapper from "../../../Frecl/Components/Form/InputWrapper.jsx";
 import inputHOC from "../../../Frecl/Components/Form/Helpers/inputHOC";
-import performanceWrapper from "../../../Frecl/Components/Form/Helpers/performanceWrapper.ts";
+import performanceWrapper from "../../../Frecl/Components/Form/Helpers/performanceWrapper";
 import classnames from "classnames";
 
 

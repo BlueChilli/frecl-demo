@@ -1,10 +1,18 @@
-import React, {PropTypes, cloneElement} from "react";
-import {Map, List, Iterable} from "immutable";
+import React, {PropTypes, isValidElement, cloneElement} from "react";
+import {Map, fromJS, List, Iterable} from "immutable";
 import classnames from "classnames";
 import {Input, CheckBox, TextArea, Radio, Select, Validate, DropZone, Number, DatePicker} from "../../exports"
 import {validationsAvailable} from "../../Helpers/validate";
 import {getContext, withProps, compose} from "recompose";
 import {isUndefined, size} from "lodash";
+
+const booleanArray = fromJS([{
+  description: 'Yes',
+  value: true
+}, {
+  description: 'No',
+  value: false
+}]);
 
 const chooseSwitchControl = (inputAttributes) => {
   if (inputAttributes.get('type') === 'checkbox') {
@@ -63,22 +71,31 @@ const ApiSelect = ({array, multiple = false, ...props}) => {
   )
 };
 
-  // propTypes: {
-  //   /** Matches a key in the Form Schema passed down by the parent FormGenerator.
-  //    * Is used to match InputMapper with the correct attributes  */
-  //   name: PropTypes.string.isRequired,
-  //   /** User can pass in a custom component for InputMapper to render instead of the default options */
-  //   component: PropTypes.element,
-  //   /** Passed as children to the chosen component currently only supported by Select and custom components */
-  //   children: PropTypes.node,
-  //   notUserCreated: PropTypes.bool
-  // }
-
 /**
  * Allows the user to create a custom layout for the FormGenerator. Must have a FormGenerator component as a parent
  * Note: this is used internally to generate a form as well.
  */
-class InputMapper extends React.Component{
+const InputMapper = React.createClass({
+  propTypes: {
+    /** Matches a key in the Form Schema passed down by the parent FormGenerator.
+     * Is used to match InputMapper with the correct attributes  */
+    name: PropTypes.string.isRequired,
+    /** User can pass in a custom component for InputMapper to render instead of the default options */
+    component: PropTypes.element,
+    /** Passed as children to the chosen component currently only supported by Select and custom components */
+    children: PropTypes.node,
+    notUserCreated: PropTypes.bool
+  },
+  // componentWillMount(){
+  //   if (!this.props.notUserCreated) {
+  //     this.props.registerInputMapper(this.props.name);
+  //   }
+  // },
+  // componentWillUnmount(){
+  //   if (!this.props.notUserCreated) {
+  //     this.props.unregisterInputMapper(this.props.name);
+  //   }
+  // },
   mapInput(inputAttributes){
     const type = inputAttributes.get('type');
     if (this.props.component) {
@@ -178,13 +195,13 @@ class InputMapper extends React.Component{
       const safeInputAttributes = inputAttributes.delete('type');
       return <Input {...safeInputAttributes.toJS()} />
     }
-  }
-  render() {
+  },
+  render: function () {
     const inputAttributes = this.props.attributes.merge(this.props);
 
     return this.mapInput(inputAttributes);
   }
-};
+});
 
 export default compose(
   getContext({

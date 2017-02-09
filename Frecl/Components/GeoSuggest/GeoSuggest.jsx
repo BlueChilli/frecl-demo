@@ -1,13 +1,13 @@
 import React, {PropTypes} from "react"
 import {connect} from "react-redux";
 import {Map, fromJS, is} from "immutable";
-import InputWrapper from "../../../Frecl/Components/Form/InputWrapper";
-import InputGroup from "../../../Frecl/Components/Form/InputGroup";
-import Input from "../../../Frecl/Components/Input/Input";
-import Number from "../../../Frecl/Components/Number/Number";
+import InputWrapper from "../../../Frecl/Components/Form/InputWrapper.jsx";
+import InputGroup from "../../../Frecl/Components/Form/InputGroup.jsx";
+import Input from "../../../Frecl/Components/Input/Input.jsx";
+import Number from "../../../Frecl/Components/Number/Number.jsx";
 import inputHOC from "../../../Frecl/Components/Form/Helpers/inputHOC";
 import performanceWrapper from "../../../Frecl/Components/Form/Helpers/performanceWrapper";
-import DisplayValidation from "../../../Frecl/Components/Validation/DisplayValidation";
+import DisplayValidation from "../../../Frecl/Components/Validation/DisplayValidation.jsx";
 import GeoSuggest from "react-geosuggest"
 import classnames from "classnames";
 // import "./GeoSuggest.scss";
@@ -17,7 +17,7 @@ import {getContext, compose} from "recompose";
 
 const Base = inputHOC(React.createClass({
   componentWillMount(){
-    this.props.inputChanged(this.props.defaultValue, false)
+    this.props.inputChanged(Map({}), false)
   },
 
   handleNoResults(change = ""){
@@ -73,9 +73,6 @@ const FreclGeoSuggest = React.createClass({
 const WrappedGeoSuggest = performanceWrapper(FreclGeoSuggest);
 
 const FullFormGeoSuggest = React.createClass({
-  defaultProps: {
-    defaultValue: Map()
-  },
   getInitialState(){
     return {
       fullForm: false,

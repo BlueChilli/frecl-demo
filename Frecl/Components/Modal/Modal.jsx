@@ -5,6 +5,7 @@ import ToggleView from "../ToggleView/ToggleView.jsx";
 import {toggleModal} from "./Actions/Modal";
 import close from "./cross.svg";
 import "./Modal.scss";
+import {stubObject} from "lodash";
 
 export const COMPONENT_NAME = "Modal";
 
@@ -74,5 +75,5 @@ const mapDispatchToProps = (dispatch, {id}) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(stubObject, mapDispatchToProps)(Modal);
 export {toggleModal}

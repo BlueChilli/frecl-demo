@@ -14,15 +14,13 @@ export default React.createClass({
   },
   makeGradient (percent, extra) {
     const gradientString = "linear-gradient(to right, #f15a24 " + percent + "%, #dedfe3 " + percent + "%)";
-    const gradient = [`-moz-${gradientString}`,
-          `-webkit-${gradientString}`,
-          `-o-${gradientString}`,
-          `-ms-${gradientString}`,
-          gradientString];
-
     return {
       ...extra,
-      background: gradient
+      background: "-moz-" + gradientString,
+      background: "-webkit-" + gradientString,
+      background: "-o-" + gradientString,
+      background: "-ms-" + gradientString,
+      background: gradientString
     }
   },
   render() {

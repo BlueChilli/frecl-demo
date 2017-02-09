@@ -1,9 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Input} from "../exports.js";
+import StyleGuide from "react-style-guide";
+import {ListHelper, Input, DropZone} from "../exports.js";
 import {stubObject} from "lodash";
-import InputMapper from "../Components/FormGenerator/InputMapper";
-import FormGenerator from "../Components/FormGenerator/FormGenerator";
+import InputMapper from "../Components/FormGenerator/InputMapper.jsx";
+import FormGenerator from "../Components/FormGenerator/FormGenerator.jsx";
 import "./style-guide.scss";
 
 

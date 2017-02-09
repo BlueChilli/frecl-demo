@@ -1,5 +1,6 @@
 import {isProduction} from "../Helpers/environment";
 import {canUseDOM} from "./canUseDOM";
+import {stubObject} from "lodash";
 
 if (canUseDOM) {
   require("raygun4js");

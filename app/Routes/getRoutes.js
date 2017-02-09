@@ -9,8 +9,6 @@ import Register from "../Views/Account/Register";
 import Login from "../Views/Account/Login";
 import Logout from "../Views/Account/Logout";
 import Manage from "../Views/Account/Manage";
-import ForgotPassword from "../Views/Account/ForgotPassword";
-import ResetPassword from "../Views/Account/ResetPassword";
 import Container from "../Components/Container";
 import authenticatedComponentCreator from "../Components/authenticatedComponentCreator";
 
@@ -24,8 +22,6 @@ export default () => {
       <Route path="account">
         <Route path="register" component={Register}/>
         <Route path="login" component={Login}/>
-        <Route path="forgotPassword" component={ForgotPassword}/>
-        <Route path="resetPassword" component={ResetPassword}/>
       </Route>
 
       <Route path="app" container component={AuthenticatedComponents}>

@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import Input from '../Input/Input.tsx';
+import Input from '../Input/Input.jsx';
 
 class Number extends React.Component {
   static defaultProps = {

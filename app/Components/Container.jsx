@@ -12,9 +12,7 @@ const Container = React.createClass({
       return (
         <ul>
           <li><Link activeClassName="active" to="/app">App</Link></li>
-          <li><Link activeClassName="active" to="/account/manage">Account</Link></li>
           <li><Link activeClassName="active" to="/account/logout">Logout</Link></li>
-          <li><Link activeClassName="active" to="/layout">Layout</Link></li>
         </ul>
       )
     }
@@ -22,7 +20,6 @@ const Container = React.createClass({
       <ul>
         <li><Link activeClassName="active" to="/account/login">Login</Link></li>
         <li><Link activeClassName="active" to="/account/register">Register</Link></li>
-        <li><Link activeClassName="active" to="/layout">Layout</Link></li>
       </ul>
     )
   },

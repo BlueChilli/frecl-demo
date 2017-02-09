@@ -49,8 +49,8 @@ const mapStateToProps = (state, {apiType, stateName}) => {
 const mapDispatchToProps = (dispatch, {stateName, apiType}) => {
   const deleteApi = window.client.getIn([apiType, `${apiType}_Delete`, 'api']);
   return {
-    editListItem: (id) => dispatch(setEditListItem(stateName, id)),
-    deleteListItem: (id) => dispatch(deleteListItem(stateName, id, deleteApi)),
+    editListItem: (id) => dispatch(setEditListItem(stateName, apiType, id)),
+    deleteListItem: (id) => dispatch(deleteListItem(stateName, apiType, id, deleteApi)),
     getNextPage: () => dispatch(getNextPage(stateName, apiType)),
     resetEditState: () => dispatch(resetEditListItem(stateName))
   }

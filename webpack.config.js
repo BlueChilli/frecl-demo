@@ -23,10 +23,6 @@ module.exports = {
       exclude: /(node_modules|custom_modules)/,
       loader: "babel-loader"
     }, {
-      test: /\.tsx?$/,
-      exclude:  /(node_modules|custom_modules)/,
-      loader: "awesome-typescript-loader"
-    }, {
       test: /\.(s?css)/,
       loader: "style-loader!css-loader!postcss-loader!sass-loader"
     },{
