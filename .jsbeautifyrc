@@ -1,0 +1,15 @@
+// Don't put a comma at the end of any JSON object
+
+{
+	"js": {
+		"indent_size": 2,
+		"brace_style": "collapse-preserve-inline",
+		"indent_with_tabs": true,
+		"jslint_happy": true,
+		"max_preserve_newlines": 2,
+		"end_with_newline": true,
+		"e4x":true,
+		"typescript": true,
+		"bracepadding": false
+	}
+}

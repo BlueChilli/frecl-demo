@@ -1,0 +1,40 @@
+.avatarPath{
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 5px;
+}
+
+.avatar-container {
+    display: inline-block;
+    padding: 0 10px 5px 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding-right: 10px;
+}
+
+.avatarTitle {
+    margin-left: 10px;
+}
+
+.chevron-down {
+    margin-left: 5px;
+    width: 8px;
+    height: 4px;
+}
+
+.children {
+    position: absolute;
+    top: 0;
+    z-index: 10000;
+}
+
+.avatar-container-selected {
+    //background-color: #F0F0F0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}

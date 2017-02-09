@@ -1,0 +1,47 @@
+.notification {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    background-color: #E3F2FD;
+    border: 1px solid #2196F3;
+    z-index: 10000;
+    padding-left: 16px;
+    padding-right: 16px;c
+
+    &.error {
+        border-top: 5px solid #F44336;
+        background-color: #FFEBEE;
+    }
+
+    &.warning {
+        border-top: 5px solid #FF5722;
+        background-color: #FBE9E7;
+    }
+
+    &.success {
+        border-top: 5px solid #8BC34A;
+        background-color: #F1F8E9;
+    }
+
+    .closeButton {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover .closeButton {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .notification-container {
+        position: relative;
+        top: 10px;
+    }
+}

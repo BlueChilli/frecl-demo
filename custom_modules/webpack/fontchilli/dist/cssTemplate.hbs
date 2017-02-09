@@ -1,0 +1,35 @@
+@font-face {
+	font-family: '{{fontName}}';
+	src: {{{src}}};
+	font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: '{{fontName}}' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    font-size: inherit;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.{{baseClass}} {
+	line-height: 1;
+}
+
+.{{baseClass}}:before {
+	font-family: '{{fontName}}' !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: middle;
+}
+
+{{#each codepoints}}
+.{{../classPrefix}}{{@key}}:before {
+	content: '\\{{this}}';
+}
+{{/each}}

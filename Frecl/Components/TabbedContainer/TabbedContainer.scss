@@ -1,0 +1,29 @@
+.tabbed-container {
+  .tabbed-container-header-tabs {
+    .tabbed-header {
+      display: inline-block;
+      cursor: pointer;
+      background: #E2E2E2;
+      width: 170px;
+      font-size: 14px;
+      text-align: center;
+      padding: 13px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      text-decoration: none;
+      color: #2B2C29;
+
+      &.active-tab {
+        background: white;
+      }
+    }
+  }
+
+  .tabbed-container-body {
+    background: white;
+    padding: 40px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+}

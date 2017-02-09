@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "react",
+    "es2015",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-object-assign",
+    "transform-react-display-name",
+    ["module-resolver", {
+      "root": ["./custom_modules"],
+      "alias": {
+      "vanilla-masker": "./custom_modules/vanilla-masker/vanilla-masker.js",
+      }
+    }]
+  ]
+}

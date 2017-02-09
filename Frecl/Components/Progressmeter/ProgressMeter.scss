@@ -1,0 +1,86 @@
+@import "_variables.scss";
+
+.progress-meter {
+  width:86%;
+  background: #dedfe3;
+  margin: ($circleSize/2) 20px;
+  height: $lineThickness;
+
+  ol.progress-bar {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    height: $lineThickness;
+    position: relative;
+    border-bottom: 1px solid $backgroundCol;
+
+    li {
+      width: 100px;
+      position: absolute;
+      padding-top: $circleSize+4;
+      left: 0;
+      margin-left: -50px;
+      text-align: center;
+      counter-increment: step-counter;
+      font-size: $fontSize;
+      font-weight: 500;
+      color: darken($backgroundCol, 5%);
+
+      &:before {
+        content: counter(step-counter);
+        width: $circleSize;
+        height: $circleSize;
+        line-height: $circleSize;
+        border: 3px solid $backgroundCol;
+        background-color: #ffffff;
+        color: $backgroundCol;
+        text-align: center;
+        font-size: $fontSize;
+        font-weight: bold;
+        border-radius: 50%;
+        float: left;
+        position: absolute;
+        top: -($circleSize/2)-1;
+        left: 50%;
+        margin-left: -($circleSize/2);
+      }
+
+      &.current {
+        color: $primaryCol;
+
+        &:before {
+          border-color: $primaryCol;
+          background-color: $primaryCol;
+          color: #ffffff;
+          -webkit-box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      &.completed {
+        color: $primaryCol;
+        &:before {
+          border-color: $primaryCol;
+          background-color: $primaryCol;
+          text-indent: -9999em;
+          -webkit-box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: -1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        &:after {
+          display: block;
+          position: absolute;
+          top: -($circleSize/9)-1;
+          left: 51%;
+          content: '';
+          width: $circleSize/5.5;
+          height: $circleSize/2.5;
+          border: solid #fff;
+          border-width: 0 3px 3px 0;
+          transform: rotate(45deg);
+          margin: 0 0 0 -1px;
+        }
+      }
+    }
+  }
+}

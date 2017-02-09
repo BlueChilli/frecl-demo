@@ -1,0 +1,13 @@
+.sass-cache
+*.css.map
+node_modules
+bower_components
+npm-debug.log
+.idea
+.DS_Store
+config/local.json
+build/
+app/Assets/svg/fontchilli/
+config/local.json
+local.json
+yarn*

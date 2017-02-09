@@ -1,0 +1,132 @@
+@import "../Styles/extends";
+
+body {
+  font-size: 14px;
+}
+
+.validation.invalid {
+  font-family: OpenSans;
+  font-size: 12px;
+  color: #D0021B;
+  letter-spacing: 0px;
+}
+
+.input, .select, .switch-container, .input-mapper-switch-container {
+  &:not(:last-child) {
+    margin-bottom: 1em;
+  }
+}
+
+.alerts {
+  margin-bottom: 1em;
+  z-index: 9000;
+  &:empty {
+    display: none;
+  }
+}
+
+.alert {
+  position: relative;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  .close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: transparent;
+    border: 0;
+  }
+  h3 {
+    margin: 0 0 4px;
+  }
+  p {
+    margin: 0;
+  }
+  &.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-bottom-color: #d6e9c6;
+  }
+  &.warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-bottom-color: #faebcc;
+  }
+  &.danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-bottom-color: #ebccd1;
+  }
+}
+
+.drop-zone-box {
+  width: 100%;
+  border: 4px dashed gray;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.Guide-markup {
+  font-family: "Source Code Pro", monospace;
+  background-color: #272822;
+  color: white;
+  padding: 5px;
+  tab-size: 2;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.hljs-tag {
+  white-space: initial;
+  color: #E3E3FF;
+}
+
+.hljs-attribute {
+  color: #A6E22E;
+}
+
+.hljs-value {
+  color: #E6DB74;
+}
+
+.Guide-heading, .Guide-example, .Guide-expanderSection button {
+  padding: 5px
+}
+
+.Guide-heading {
+  margin: 0;
+  background-color: white;
+  a {
+    color: #333;
+    text-decoration: none;
+    &:hover:after {
+      content: '#';
+      color: #bbb;
+      font-size: 20px;
+    }
+  }
+}
+
+.Guide {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.Guide-expanderSection {
+  button {
+    text-align: right;
+    border: 0;
+    background: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: darkblue;
+    width: 100%;
+    outline: 0;
+  }
+}

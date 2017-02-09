@@ -1,0 +1,30 @@
+{
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+    },
+    "env": {
+    	"es6": true
+    },
+    "rules": {
+        "object-shorthand": [2, "always"],
+        "no-unused-vars": 1,
+        "react/jsx-uses-vars": 1
+    },
+    "plugins": [
+        "react"
+    ],
+    "globals": {
+        "__dirname": true
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true,
+            "arrowFunctions": true,
+            "modules": true,
+            "experimentalObjectRestSpread": true
+        }
+    }
+}

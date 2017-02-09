@@ -1,0 +1,17 @@
+.button-spinner {
+  position: relative;
+  padding-left: 40px;
+  .spinner {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    display: block;
+  }
+  .large {
+    vertical-align: middle;
+  }
+  .inlineStandard-spinner-loader {
+    //font-size: 6px;
+    vertical-align: middle;
+  }
+}
