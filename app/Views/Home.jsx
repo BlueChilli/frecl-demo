@@ -42,8 +42,11 @@ const DisplayEmployees = ({data, editListItem, deleteListItem, ...props}) => {
 }
 
 const mapOutput = (data) => {
-
   return data.set('jobFunctionIds', List([data.get('jobFunctionIds')]));
+}
+
+const mapInput = (data) => {
+  return data.set('jobFunctionIds', data.getIn(['jobFunctions', 0, 'id']));
 }
 
 
@@ -57,7 +60,7 @@ const Home = React.createClass({
     return (
       <div className="home-hero">
         <div className="home-hero-container">
-            <FormGenerator debug apiType="Employee" stateName="EMPLOYEE" mapOutput={mapOutput}>
+            <FormGenerator debug apiType="Employee" stateName="EMPLOYEE" mapOutput={mapOutput} mapInputs={mapInput}>
               <InputMapper name="firstName" />
               <InputMapper name="ratePerHour" />
               <InputMapper name="jobFunctionIds" component={<JobFunctionIdsComponent/>} />
