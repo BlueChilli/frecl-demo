@@ -57,15 +57,15 @@ const Home = React.createClass({
     return (
       <div className="home-hero">
         <div className="home-hero-container">
-            <FormGenerator debug apiType="Employee" mapOutput={mapOutput}>
+            <FormGenerator debug apiType="Employee" stateName="EMPLOYEE" mapOutput={mapOutput}>
               <InputMapper name="firstName" />
               <InputMapper name="ratePerHour" />
               <InputMapper name="jobFunctionIds" component={<JobFunctionIdsComponent/>} />
             </FormGenerator>
 
           <ListHelper apiType="Employee" stateName="EMPLOYEE">
-              <DisplayEmployees/>
-            </ListHelper>
+            <DisplayEmployees/>
+          </ListHelper>
 
         </div>
       </div>
