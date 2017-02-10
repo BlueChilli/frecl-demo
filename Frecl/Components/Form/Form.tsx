@@ -157,10 +157,10 @@ class Form extends React.Component<FormProps, FormStateProps>{
   }
 
   render(){
-    const {FormState, dispatch, onSubmit, className, name, ...safeProps} = this.props;
+    const {FormState, dispatch, onSubmit, className, name, encType, ...safeProps} = this.props;
     var classes = classnames('form', className);
     return (
-      <form name={name} ref={name} onSubmit={this.handleSubmit} className={classes} noValidate {...safeProps}>
+      <form name={name} ref={name} onSubmit={this.handleSubmit} className={classes} noValidate encType={encType}>
         {this.props.children}
       </form>
     );

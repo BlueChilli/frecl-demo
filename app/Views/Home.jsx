@@ -11,7 +11,7 @@ const JobFunctionIdsComponent = ({array, ...props}) => {
   return (
     <div>
         <Select {...props}>
-          {array.map(val => <option value={val.get('id')}>{val.get('title')}</option>)}
+          {array.map(val => <option key={val.get('id')} value={val.get('id')}>{val.get('title')}</option>)}
         </Select>
     </div>
   )
@@ -29,13 +29,13 @@ const DisplayEmployees = ({data, editListItem, deleteListItem, ...props}) => {
 
   return(
     <div>
-      {data.map(val => (
-        <ul>
+      {data.map((val, index) => (
+        <ul key={index}>
           <li>{val.get('firstName')}, ${val.get('ratePerHour')}, {val.getIn(['jobFunctions', '0', 'title'])}</li>
           <li><a href="#" onClick={createEdit(val.get('id'))}>Edit</a></li>
           <li><a href="#" onClick={createDelete(val.get('id'))}>Delete</a></li>
         </ul>
-      ))}
+      )).toArray()}
     </div>
   )
 }

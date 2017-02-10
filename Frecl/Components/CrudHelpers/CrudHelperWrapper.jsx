@@ -24,7 +24,7 @@ const CrudHelperWrapper = React.createClass({
     /** Passed down by mapStateToProps contains the data from the request */
     data: PropTypes.any,
     /** Crud helper to wrap */
-    children: PropTypes.element
+    children: PropTypes.any
   },
   componentWillMount() {
     this.props.getData();

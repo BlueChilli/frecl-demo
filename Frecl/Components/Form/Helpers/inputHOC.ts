@@ -1,8 +1,8 @@
 import React, {PropTypes} from "react";
-import {compose, setPropTypes, mapProps, getContext, withHandlers, lifecycle} from "recompose";
+import {compose, setPropTypes, mapProps, getContext, withHandlers, lifecycle, withProps} from "recompose";
 import {inputValueChanged, setInputInteraction} from "../Actions/fields";
 import {isMultipleValueInput, returnDefinedValue} from "./inputHelpers";
-import {isUndefined, isEqual} from "lodash";
+import {isUndefined, isEqual, pick} from "lodash";
 import {Iterable} from "immutable"
 import createSpecificShallowEqual from "../../../Helpers/createSpecificShallowEqual"
 import {InputProps, InputInfoProps, InputHOCInitialProps, InputHOCWithHandlersProps, InputHOCContextProps, InputHOCMapProps} from "../Types/types"
@@ -42,7 +42,7 @@ export default <TInner, TOutter> (reactClass:ReactComponent<TInner>) => compose<
   }),
   mapProps(({inputInfo, defaultValue, defaultChecked, defaultSelected, getInputPath, ...props} : InputHOCContextProps) => {
     const allInputsDefaultValue = returnDefinedValue(defaultValue, defaultChecked, defaultSelected);
-    const value = returnDefinedValue(inputInfo.get('value', undefined), props.value, allInputsDefaultValue, getUnsetValue(props));
+    const value = returnDefinedValue(inputInfo.get('value'), props.value, allInputsDefaultValue, getUnsetValue(props));
     return {
       ...props,
       defaultValue: allInputsDefaultValue,
@@ -62,10 +62,8 @@ export default <TInner, TOutter> (reactClass:ReactComponent<TInner>) => compose<
         ref: props.name,
         value
       });
-      //Do not filter component specific props here do it in the actual component
-      const {
-        customValidation, nameSpace, FormState, inputGroupInfo, dispatch, fieldSetNameSpace, inputPath, ...safeProps
-      } = reactProps;
+
+      const safeProps = pick(reactProps, "id", "autoFocus", "required", "name", "type", "value");
       if (props.type === 'checkbox' || props.type === 'radio') {
         if (props.type === 'radio') {
           return Object.assign({}, safeProps, {

@@ -1,12 +1,13 @@
 import React, {PropTypes, Children} from "react";
 import {withProps} from "recompose";
+import {List} from "immutable";
 import inputHOC from "../Form/Helpers/inputHOC";
 import {ShallowCompare} from "../../types";
 import {SelectInputProps, SelectInputHOCWithHandlersProps} from "../Form/Types/types";
 
 interface OptionTypes{
   value: string | boolean | number,
-  children: React.ReactText
+  children: List<React.ReactText>
 }
 
 interface WithProps extends SelectInputProps {
@@ -14,7 +15,8 @@ interface WithProps extends SelectInputProps {
 }
 
 interface InputHOC extends SelectInputHOCWithHandlersProps{
-  defaultSelected: string | boolean | number
+  defaultSelected: string | boolean | number,
+  children: List<React.ReactText>
 }
 
 
@@ -40,7 +42,7 @@ class SelectBase extends React.Component<InputHOC, {}> {
     const attributes = this.props.getAttributes();
     return (
       <select {...attributes} onChange={this.handleChange}>
-        {this.props.children}
+        {this.props.children.toArray()}
       </select>
     );
   }
