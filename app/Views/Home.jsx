@@ -6,9 +6,6 @@ import FormGenerator from "../../Frecl/Components/FormGenerator/FormGenerator";
 import ListHelper from "../../Frecl/Components/CrudHelpers/ListHelper";
 import InputMapper from "../../Frecl/Components/FormGenerator/InputMapper";
 import Select from "../../Frecl/Components/Select/Select";
-import Form from "../../Frecl/Components/Form/Form"
-import Input from "../../Frecl/Components/Input/Input"
-
 
 const JobFunctionIdsComponent = ({array, ...props}) => {
   return (
@@ -34,7 +31,7 @@ const DisplayEmployees = ({data, editListItem, deleteListItem, ...props}) => {
     <div>
       {data.map(val => (
         <ul>
-          <li>{val.get('firstName')} {val.get('lastName')}</li>
+          <li>{val.get('firstName')}, ${val.get('ratePerHour')}, {val.getIn(['jobFunctions', '0', 'title'])}</li>
           <li><a href="#" onClick={createEdit(val.get('id'))}>Edit</a></li>
           <li><a href="#" onClick={createDelete(val.get('id'))}>Delete</a></li>
         </ul>
@@ -44,8 +41,11 @@ const DisplayEmployees = ({data, editListItem, deleteListItem, ...props}) => {
 }
 
 const mapOutput = (data) => {
-
   return data.set('jobFunctionIds', List([data.get('jobFunctionIds')]));
+}
+
+const mapInput = (data) => {
+  return data.set('jobFunctionIds', data.getIn(['jobFunctions', 0, 'id']));
 }
 
 
@@ -59,7 +59,7 @@ const Home = React.createClass({
     return (
       <div className="home-hero">
         <div className="home-hero-container">
-            <FormGenerator debug apiType="Employee" stateName="EMPLOYEE" mapOutput={mapOutput}>
+            <FormGenerator debug apiType="Employee" stateName="EMPLOYEE" mapOutput={mapOutput} mapInputs={mapInput}>
               <InputMapper name="firstName" />
               <InputMapper name="ratePerHour" />
               <InputMapper name="jobFunctionIds" component={<JobFunctionIdsComponent/>} />
@@ -68,10 +68,6 @@ const Home = React.createClass({
           <ListHelper apiType="Employee" stateName="EMPLOYEE">
             <DisplayEmployees/>
           </ListHelper>
-
-          <Form name="test">
-            <Input name="test" label="test" defaultValue="test"/>
-          </Form>
 
         </div>
       </div>
