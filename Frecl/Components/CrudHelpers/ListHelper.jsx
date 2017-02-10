@@ -24,7 +24,7 @@ const ListHelper = React.createClass({
     this.props.resetEditState()
   },
   render(){
-    const {data, children, getNextPage, editListItem, deleteListItem, nextDisplayed, ...props} = this.props;
+    const {data, children, getNextPage, editListItem, deleteListItem, resetEditState, nextDisplayed, ...props} = this.props;
     return (
       <CrudHelperWrapper {...props}>
         {React.Children.map(children, child => React.cloneElement(child, {
@@ -32,6 +32,7 @@ const ListHelper = React.createClass({
           getNextPage,
           deleteListItem,
           editListItem,
+          resetEditState,
           nextDisplayed
         }))}
       </CrudHelperWrapper>
@@ -56,5 +57,7 @@ const mapDispatchToProps = (dispatch, {stateName, apiType}) => {
   }
 };
 
+
+export {resetEditListItem};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListHelper);

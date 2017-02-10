@@ -3,7 +3,7 @@ import {List} from "immutable";
 import {push} from "react-router-redux";
 import {connect} from "react-redux";
 import FormGenerator from "../../Frecl/Components/FormGenerator/FormGenerator";
-import ListHelper from "../../Frecl/Components/CrudHelpers/ListHelper";
+import ListHelper, {resetEditListItem} from "../../Frecl/Components/CrudHelpers/ListHelper";
 import InputMapper from "../../Frecl/Components/FormGenerator/InputMapper";
 import Select from "../../Frecl/Components/Select/Select";
 
@@ -64,6 +64,8 @@ const Home = React.createClass({
               <InputMapper name="ratePerHour" />
               <InputMapper name="jobFunctionIds" component={<JobFunctionIdsComponent/>} />
             </FormGenerator>
+            <br/>
+            <button type="button" onClick={this.props.reset}>Reset Form</button>
 
           <ListHelper apiType="Employee" stateName="EMPLOYEE">
             <DisplayEmployees/>
@@ -75,6 +77,10 @@ const Home = React.createClass({
   }
 });
 
-export default connect()(Home);
+const mapDispachToProps = (dispatch) => ({
+  reset: () => dispatch(resetEditListItem("EMPLOYEE"))
+})
+
+export default connect(() => ({}), mapDispachToProps)(Home);
 
 
