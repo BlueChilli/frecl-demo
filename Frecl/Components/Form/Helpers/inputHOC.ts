@@ -18,7 +18,7 @@ export const InputSetup = {
 
   componentWillReceiveProps(nextProps:InputHOCWithHandlersProps){
     if (!specificShallowEqual(nextProps, this.props)) {
-      nextProps.inputChanged(nextProps.defaultValue, false)
+      nextProps.inputChanged(nextProps.defaultValue, false);
     }
     if (!nextProps.FormState.hasIn([nextProps.nameSpace, ...nextProps.inputPath])) {
       nextProps.inputChanged(nextProps.value, false);
@@ -42,7 +42,7 @@ export default <TInner, TOutter> (reactClass:ReactComponent<TInner>) => compose<
   }),
   mapProps(({inputInfo, defaultValue, defaultChecked, defaultSelected, getInputPath, ...props} : InputHOCContextProps) => {
     const allInputsDefaultValue = returnDefinedValue(defaultValue, defaultChecked, defaultSelected);
-    const value = returnDefinedValue(inputInfo.get('value', ''), props.value, allInputsDefaultValue, getUnsetValue(props));
+    const value = returnDefinedValue(inputInfo.get('value', undefined), props.value, allInputsDefaultValue, getUnsetValue(props));
     return {
       ...props,
       defaultValue: allInputsDefaultValue,

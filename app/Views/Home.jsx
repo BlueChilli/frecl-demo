@@ -6,6 +6,8 @@ import FormGenerator from "../../Frecl/Components/FormGenerator/FormGenerator";
 import ListHelper from "../../Frecl/Components/CrudHelpers/ListHelper";
 import InputMapper from "../../Frecl/Components/FormGenerator/InputMapper";
 import Select from "../../Frecl/Components/Select/Select";
+import Form from "../../Frecl/Components/Form/Form"
+import Input from "../../Frecl/Components/Input/Input"
 
 
 const JobFunctionIdsComponent = ({array, ...props}) => {
@@ -66,6 +68,10 @@ const Home = React.createClass({
           <ListHelper apiType="Employee" stateName="EMPLOYEE">
             <DisplayEmployees/>
           </ListHelper>
+
+          <Form name="test">
+            <Input name="test" label="test" defaultValue="test"/>
+          </Form>
 
         </div>
       </div>

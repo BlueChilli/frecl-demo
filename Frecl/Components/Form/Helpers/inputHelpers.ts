@@ -8,6 +8,7 @@ export const isMultipleValueInput = (inputName:string):boolean => {
 
 export const returnDefinedValue = (...args:ShallowCompare[]) => {
   const innerReturnDefinedValue = (index = 0):ShallowCompare => {
+    // console.log(args[index])
     if (index === args.length) {
       return undefined;
     } else if (!isUndefined(args[index])) {

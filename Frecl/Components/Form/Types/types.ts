@@ -59,7 +59,11 @@ export interface InputWrapperProps extends BaseReactProps, LabelProp, BaseFormPr
 
 
 interface BaseInputProps extends BaseReactProps, InputEventProps, ValidationProps, BaseFormProps, TypeProp{
-	id?: string
+	id?: string,
+	/** Default value for the input to display */	
+	defaultValue?: ShallowCompare,
+	/** Automatically select this field on navigation*/			
+	autoFocus?: boolean,
 }
 
 export interface OptionalValidationProps{
@@ -69,15 +73,9 @@ export interface OptionalValidationProps{
 	noValidate? :any,
 }
 
-export interface OptionalInputProps {
-	/** Inputs default value*/		
-	defaultValue?: ShallowCompare,
-	/** Automatically select this field on navigation*/			
-	autoFocus?: boolean,
-}
 
 
-export interface InputProps extends BaseInputProps, OptionalInputProps{}
+export interface InputProps extends BaseInputProps{}
 export interface TextAreaProps extends InputProps, InputValidationProps, InputWrapperProps {}
 export interface TextInputProps extends TextAreaProps, InputGroupProps, InputWrapperProps {} 
 
@@ -88,8 +86,6 @@ interface BaseSwitchProps {
 }
 
 export interface SelectInputProps extends TextInputProps, BaseSwitchProps {
-	/** Default value for the input to display */
-	defaultValue?: ShallowCompare,
 	/** Pass in an arrow to display at the edge of the select box */ 
 	arrow?: React.ReactNode
 }
