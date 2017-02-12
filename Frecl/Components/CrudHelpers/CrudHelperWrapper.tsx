@@ -1,39 +1,51 @@
 import React, {PropTypes} from "react";
-import {Map} from "immutable";
+import {Map, List} from "immutable";
+import {isUndefined} from "lodash";
 import {connect} from "react-redux";
 import {getData} from "./Actions/CrudHelpers"
 import {getFirstPath, getTopStatePath} from "./Helpers/stateHelpers"
 import createSpecificShallowEqual from "../../Helpers/createSpecificShallowEqual"
+import {BaseReactProps, apiPathArgs, apiParamArgs} from "../../types";
+
 
 const specificShallowEqual = createSpecificShallowEqual("pathname", "params", "pathArgs");
 
-/** A higher order component to be used internally primarily used to fetch data and pass it down to children  */
-const CrudHelperWrapper = React.createClass({
-  propTypes: {
-    /** Capitalised: The key that the data will be added to state under,
+declare const window: any
+
+interface StateProps {
+  data: List<any> | Map<string, any>
+}
+
+interface DispatchProps {
+  getData: () => any
+}
+
+interface CrudHelperProps extends BaseReactProps {
+   /** Capitalised: The key that the data will be added to state under,
      * should match the string provided to createCrudReducer */
-    stateName: PropTypes.string.isRequired,
+    stateName: string,
     /** The group of api calls the wrapper interacts with */
-    apiType: PropTypes.string.isRequired,
+    apiType: string,
     /** Api verb to fetch the data from, the default: 'Query' */
-    apiVerb: PropTypes.string,
+    apiVerb?: string,
     /** Params to be passed to the api request passed in the body of the request */
-    params: PropTypes.object,
+    params: apiParamArgs,
     /** Path arguments to be passed to the api request injected into the path */
-    pathArgs: PropTypes.instanceOf(Map),
-    /** Passed down by mapStateToProps contains the data from the request */
-    data: PropTypes.any,
-    /** Crud helper to wrap */
-    children: PropTypes.any
-  },
+    pathArgs: apiPathArgs,
+}
+
+interface ConnectedCrudHelperProps extends CrudHelperProps, StateProps, DispatchProps{}
+
+/** A higher order component to be used internally primarily used to fetch data and pass it down to children  */
+class CrudHelperWrapper extends React.Component<ConnectedCrudHelperProps, {}>{
   componentWillMount() {
     this.props.getData();
-  },
+  }
   componentWillReceiveProps(nextProps) {
     if (!specificShallowEqual(this.props, nextProps)) {
       nextProps.getData();
     }
-  },
+  }
   render(){
     const {data, children} = this.props;
     return (
@@ -44,9 +56,9 @@ const CrudHelperWrapper = React.createClass({
       </div>
     );
   }
-});
+};
 
-const mapStateToProps = (state, {stateName, pathArgs = Map()}) => {
+const mapStateToProps = (state, {stateName, pathArgs = Map()}:CrudHelperProps) => {
   const statePath = getTopStatePath(stateName);
   const defaultDataPath = [statePath, getFirstPath(stateName), 'data'];
   const dataPath = pathArgs.has('id') ? defaultDataPath.concat(pathArgs.get('id') + "") : defaultDataPath;
@@ -56,11 +68,11 @@ const mapStateToProps = (state, {stateName, pathArgs = Map()}) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, {stateName, apiType, params, apiVerb = "Query", pathArgs = Map()}) => {
+const mapDispatchToProps = (dispatch, {stateName, apiType, params, apiVerb = "Query", pathArgs}:CrudHelperProps) => {
   return {
     getData: () => {
-      const pathArgsDefined = pathArgs.every(value => value);
-      if (apiType !== false && pathArgsDefined) {
+      const pathArgsDefined = !pathArgs.every(isUndefined);
+      if (pathArgsDefined) {
         dispatch(getData(stateName, window.client.getIn([apiType, `${apiType}_${apiVerb}`, 'api']), params, pathArgs))
       }
     }
@@ -68,4 +80,4 @@ const mapDispatchToProps = (dispatch, {stateName, apiType, params, apiVerb = "Qu
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CrudHelperWrapper);
+export default connect<StateProps, DispatchProps, CrudHelperProps>(mapStateToProps, mapDispatchToProps)(CrudHelperWrapper);

@@ -73,7 +73,7 @@ ajax.get(`${BASE_URL}/swagger/docs/v1?flatten=true`).then(res => {
         const info = entries[1];
         return [
           info.get('operationId'),
-          info.set('api', (data, params = {}, pathArgs = Map({})) => {
+          info.set('api', (data, params = Map(), pathArgs = Map()) => {
             const pathWithArgs = insertPathArguments(pathArgs, path, 0);
             return ajax.request({
               withCredentials: true,

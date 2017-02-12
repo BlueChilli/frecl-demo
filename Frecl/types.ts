@@ -3,7 +3,8 @@ import {Moment} from "moment";
 import {Action} from "redux";
 
 
-export type apiPathArgs = Map<string, string | number | boolean>
+export type apiPathArgs = Map<string, string | number>
+export type apiParamArgs = apiPathArgs
 
 export type apiResponseData<T> = string | number | boolean | Map<string | number, T> | List<T> 
 
