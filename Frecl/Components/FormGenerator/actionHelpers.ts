@@ -1,7 +1,7 @@
 import {Map} from "immutable"
 import {Dispatch} from "react-redux"
 import {getFirstPath} from "../CrudHelpers/Helpers/stateHelpers";
-import {createNotification} from "../../../app/Actions/Notification";
+import {createNotification} from "../../Actions/Notification";
 import {apiResponseDataMap, BaseAction, PostAction, api, apiRequestDataMap, apiPathArgs} from "../../types"
 
 const getPostActionType = (data, stateName:string):string => {

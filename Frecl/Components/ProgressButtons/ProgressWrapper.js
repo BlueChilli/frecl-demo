@@ -1,13 +1,18 @@
 import React, {PropTypes} from "react";
+import {connect} from "react-redux";
+import {clearProgressWrapperState} from "./Actions/ProgressActions"
 
 class ProgressWrapper extends React.Component{
     getChildContext(){
         return {
-            progressWrapperNameSpace: this.props.name
+            progressButtonsNameSpace: this.props.name
         }
     }
+    componentWillUnmount(){
+        this.props.clearProgressWrapperState();
+    }
     render() {
-        return(
+        return (
             <div>
                 {this.props.children}
             </div>
@@ -16,9 +21,15 @@ class ProgressWrapper extends React.Component{
 }
 
 ProgressWrapper.childContextTypes = {
-    progressWrapperNameSpace: PropTypes.string
+    progressButtonsNameSpace: PropTypes.string
 }
 
-export default ProgressWrapper
+const mapDispatchToProps = (dispatch, {name}) => ({
+    clearProgressWrapperState: () => {
+        dispatch(clearProgressWrapperState(name));
+    }
+})
+
+export default connect(null, mapDispatchToProps)(ProgressWrapper)
 
 //TODO: Move ProgressButtons outside ProgressWrapper

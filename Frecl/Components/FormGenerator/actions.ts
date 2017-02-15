@@ -1,6 +1,6 @@
 import {getFirstPath} from "../CrudHelpers/Helpers/stateHelpers";
-import {createNotification} from "../../../app/Actions/Notification";
-import {startSpinner, endSpinner} from "../../../app/Actions/ButtonSpinner";
+import {createNotification} from "../../Actions/Notification";
+import {startSpinner, endSpinner} from "../../Components/ButtonSpinner/Action/ButtonSpinner";
 
 import {apiRequestDataMap, apiResponseDataMap, api} from "../../types"
 

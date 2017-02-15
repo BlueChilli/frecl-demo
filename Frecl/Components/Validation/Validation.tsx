@@ -73,7 +73,7 @@ export default compose<ValidationInternalProps, ValidationComponentProps>(
             return setValid(!!customValidation);
           } else if (customValidation instanceof Promise){
             customValidation.then(res => setValid(!!res)).catch(res => setValid(!!res));
-            setValid(true);
+            return setValid(true);
           } else {
             return console.error("Custom validation functions must return a bool, undefined or a promise");
           }

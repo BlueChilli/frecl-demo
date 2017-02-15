@@ -1,4 +1,4 @@
-import React, {PropTypes} from "react";
+import React, {PropTypes, ReactElement} from "react";
 import {Map, List} from "immutable";
 import {isUndefined} from "lodash";
 import {connect} from "react-redux";
@@ -20,7 +20,7 @@ interface DispatchProps {
   getData: () => any
 }
 
-interface CrudHelperProps extends BaseReactProps {
+export interface CrudHelperProps extends BaseReactProps {
    /** Capitalised: The key that the data will be added to state under,
      * should match the string provided to createCrudReducer */
     stateName: string,
@@ -33,6 +33,15 @@ interface CrudHelperProps extends BaseReactProps {
     /** Path arguments to be passed to the api request injected into the path */
     pathArgs: apiPathArgs,
 }
+
+interface DataProps {
+  data: any
+}
+
+export interface CrudHelperChildProps extends DataProps, CrudHelperProps{}
+
+type CrudHelperChild = ReactElement<CrudHelperChildProps>
+
 
 interface ConnectedCrudHelperProps extends CrudHelperProps, StateProps, DispatchProps{}
 
@@ -50,8 +59,8 @@ class CrudHelperWrapper extends React.Component<ConnectedCrudHelperProps, {}>{
     const {data, children} = this.props;
     return (
       <div>
-        {React.Children.map(children, child => React.cloneElement(child, {
-          data,
+        {React.Children.map<CrudHelperChild>(children, (child:CrudHelperChild) => React.cloneElement(child, {
+          data
         }))}
       </div>
     );

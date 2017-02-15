@@ -1,14 +1,13 @@
 import React, {PropTypes} from "react";
 import {List} from "immutable";
 import {connect} from "react-redux";
-import classnames from "classnames";
 import {getContext, compose} from "recompose";
 import {setChosenProgressItem} from './Actions/ProgressActions';
 import "./progressButtons.scss";
 
 class ProgressButtons extends React.Component{
     switchStep(index) {
-        return (e) => {
+        return () => {
             this.props.setChosenProgressItem(index);
         };
     }
@@ -23,14 +22,13 @@ class ProgressButtons extends React.Component{
     }
 
     render() {
-        console.log(this.props.index);
        return (
             <ol id="progress-buttons">
-                {this.props.progressButtons.map((stepTitle, index) => {
+                {this.props.progressButtons.map((progressButton, index) => {
                     return (
                         <li>{
                             React.createElement(this.props.template, {
-                                title: stepTitle,
+                                title: progressButton.get('title'),
                                 state: this.decideChildState(index),
                                 activateStep: this.switchStep(index)
                             })
@@ -47,22 +45,22 @@ ProgressButtons.PropTypes = {
     template: PropTypes.object
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, {progressButtonsNameSpace}) => {
     return {
-        progressButtons: state.getIn(['ProgressWrapperState', ownProps.progressWrapperNameSpace, 'buttons'], List()),
-        index: state.getIn(['ProgressWrapperState', ownProps.progressWrapperNameSpace, 'state'], 0)
+        progressButtons: state.getIn(['ProgressWrapperState', progressButtonsNameSpace, 'buttons'], List()),
+        index: state.getIn(['ProgressWrapperState', progressButtonsNameSpace, 'state'], 0)
     }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, {progressButtonsNameSpace}) => {
     return {
-        setChosenProgressItem: (index) => dispatch(setChosenProgressItem(ownProps.progressWrapperNameSpace, index))
+        setChosenProgressItem: (id) => dispatch(setChosenProgressItem(progressButtonsNameSpace, id))
     }
 };
 
 export default compose(
     getContext({
-        progressWrapperNameSpace: PropTypes.string
+        progressButtonsNameSpace: PropTypes.string
     }), 
     connect(mapStateToProps, mapDispatchToProps)
 )(ProgressButtons);

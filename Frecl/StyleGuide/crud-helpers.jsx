@@ -41,9 +41,9 @@ const ListDisplay = ({data, deleteListItem, editListItem, getNextPage, nextDispl
 const CrudHelpers = ({submitSuccess}) => (
   <div>
   
-    {/*<ListHelper stateName="TEST" pathname="test">*/}
-    {/*<ListDisplay/>*/}
-    {/*</ListHelper>*/}
+    <ItemHelper stateName="TEST" pathname="test">
+      <ListDisplay/>
+    </ItemHelper>
     <FormGenerator stateName="TEST" apiType="UserAccount">
       <InputMapper name="firstName"/>
       <InputMapper name="email" component={<Input/>}/>
@@ -55,7 +55,6 @@ const CrudHelpers = ({submitSuccess}) => (
       <InputMapper name="email" component={<Input/>}/>
       <InputMapper name="password"/>
     </FormGenerator>
-
   </div>
 );
 

@@ -46,14 +46,20 @@ const convertToFormData = (formMap:formState):FormData => {
   formMap.forEach((value, key) => {
     if (Map.isMap(value)) {
       value.map((innerVal, index) => {
-        formData.append(key + `.${index}`, innerVal);
+        if(innerVal !== null){
+          formData.append(key + `.${index}`, innerVal);
+        }
       })
     } else if (List.isList(value)) {
       value.map((innerVal, index) => {
-        formData.append(key + `[${index}]`, innerVal);
+        if(innerVal !== null){
+          formData.append(key + `[${index}]`, innerVal);
+        }
       })
     } else {
-      formData.append(key, value);
+      if(value !== null){
+        formData.append(key, value);
+      }
     }
   });
   return formData;
